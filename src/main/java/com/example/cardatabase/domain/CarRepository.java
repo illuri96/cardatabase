@@ -1,11 +1,18 @@
 package com.example.cardatabase.domain;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
-public interface CarRepository extends CrudRepository <Car, Long> { 
-		
-	// Fetch cars by brand using SQL
-	
+
+@RepositoryRestResource
+public interface CarRepository extends CrudRepository <Car, Long> {
+  // Fetch cars by brand
+  List<Car> findByBrand(@Param("brand") String brand);
+  // Fetch cars by color
+  List<Car> findByColor(@Param("color") String color);
 }
+
 
